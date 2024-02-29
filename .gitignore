@@ -1,0 +1,6 @@
+yotta_targets/*
+yotta_modules/*
+build/*
+*.hex
+*.bin
+*.DS_Store
