@@ -1,12 +1,14 @@
 # Incompatible V1 Error Programme
 
 A simple BLE-enabled DAL programme for micro:bit V1 that scrolls error code
-927 on the display.
+927 on the display, which indicates the programme is not compatible with this
+board.
 
 This programme is meant to be used with the
 [Universal Hex Creator Tool](https://tech.microbit.org/software/universal-hex-creator/)
-to include a micro:bit V1 hex file that scrolls the "not compatible" error code
-for V2-only programmes.
+as a micro:bit V1 hex file that can be used to create a Universal Hex file
+together with a V2 programme that cannot be made V1 compatible,
+so on V1 it will scroll this error code.
 
 ## Dependencies
 
