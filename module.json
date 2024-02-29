@@ -1,7 +1,7 @@
 {
   "name": "error-programme",
   "version": "1.0.0",
-  "description": "The micro:bit runtime common abstraction with examples.",
+  "description": "A micro:bit V1 programme to scroll 'not compatible' error code.",
   "license": "MIT",
   "dependencies": {
     "microbit": "lancaster-university/microbit#v2.1.1"

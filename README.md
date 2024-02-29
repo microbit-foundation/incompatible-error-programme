@@ -10,6 +10,7 @@ for V2-only programmes.
 
 ## Dependencies
 
+Local toolchain:
 - [GNU Arm Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
 - [Git](https://git-scm.com)
 - [CMake](https://cmake.org/download/)
@@ -17,14 +18,19 @@ for V2-only programmes.
 - [Ninja](https://ninja-build.org/)
 - [Yotta](https://yottabuild.org/)
 
-Or Docker.
+Or with Docker we only need the `ghcr.io/carlosperate/microbit-toolchain`
+image.
 
 ## Build Instructions
 
+Build with local toolchain:
 ```
 yotta build
 ```
 
+Build with docker:
 ```
-docker run -v $(pwd):/home --rm ghcr.io/carlosperate/microbit-toolchain:latest yotta build
+docker run -v $(pwd):/home --rm ghcr.io/carlosperate/microbit-toolchain:v2.0.0 yotta build
 ```
+
+Output file: `build/bbc-microbit-classic-gcc/src/error-programme-combined.hex`

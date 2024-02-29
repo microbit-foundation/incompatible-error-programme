@@ -1,0 +1,41 @@
+name: Build Project
+
+on:
+  push:
+    branches: '*'
+  pull_request:
+    branches: '*'
+  release:
+    types: published
+
+jobs:
+  build-projects:
+    runs-on: ubuntu-latest
+    name: Build & upload hex
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build all projects
+        run: docker run -v $(pwd):/home --rm ghcr.io/carlosperate/microbit-toolchain:v2.0.0 yotta build
+      - name: Upload hex file
+        uses: actions/upload-artifact@v4
+        with:
+          name: error-programme
+          path: build/bbc-microbit-classic-gcc/src/error-programme-combined.hex
+          if-no-files-found: error
+
+  release-asset:
+    name: Upload artifact as GH Release asset
+    needs: build-projects
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set the GH Release tag to env variable $TAG
+        run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Download all hex file
+        uses: actions/download-artifact@v4
+        id: download-hex-files
+      - name: Upload hex file to GH Release
+        uses: microbit-foundation/upload-release-action@2.9.0
+        with:
+          file: ${{steps.download-hex-files.outputs.download-path}}/error-programme/error-programme-combined.hex
+          asset_name: error-programme-${{ env.TAG }}.hex
