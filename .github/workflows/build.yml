@@ -15,7 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build all projects
-        run: docker run -v $(pwd):/home --rm ghcr.io/carlosperate/microbit-toolchain:v2.0.0 yotta build
+        run: |
+          docker run --rm \
+            -v $(pwd):/home \
+            -e YOTTA_GITHUB_AUTHTOKEN='${{ secrets.YOTTA_GITHUB_AUTHTOKEN }}' \
+            ghcr.io/carlosperate/microbit-toolchain:v2.0.0 \
+            yotta build
       - name: Upload hex file
         uses: actions/upload-artifact@v4
         with:

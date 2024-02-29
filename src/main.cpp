@@ -17,6 +17,6 @@ int main() {
     while (true) {
         uBit.display.print(error_face);
         uBit.sleep(1000);
-        uBit.display.print("927");
+        uBit.display.print("927", 750);
     }
 }
